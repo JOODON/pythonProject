@@ -55,7 +55,13 @@ def find_subject():
     insubject=input(">검색할 과목을 입력:")
     subject=get_subject(insubject)
     study,time,fulltime,FirstName=subject
-    print("[과목명] :%s %s %s %s"%(study,time,fulltime,FirstName))
+    print("[과목명:%s] [학점 : %s] [이수 시간:%s] [ProF:%s]"%(study,time,fulltime,FirstName))
+def find_stscore():
+    instscore=input(">[학번]을 입력 해주세요")
+    for number,studynumber,score in stscore:
+        if instscore == number:
+            print("[번호 :%s] [과목 번호:%s] [점수:%s]"%(number,studynumber,score))
+
 
 ########## Main ################
 while True:         #작업 선택
