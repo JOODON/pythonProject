@@ -2,6 +2,14 @@ from Score import *
 #작업 선택 종류
 SEARCH, LIST, STATS, DATAMG, END = ('1', '2', '3', '4', 'x')
 
+def sel_task(): #작업 선택 메뉴
+    print("_"*50)
+    print("1:검색   2:현황   3:통계   4:데이터관리   x:종료")
+    selno = input("<작업 선택> ")
+    if len(selno) == 0:
+        return 'x'
+    else:
+        return selno
 def find_student():
     instid = input(">학번 입력: ")
     val = get_student(instid)
@@ -30,16 +38,32 @@ def selmenu01_find():
                 find_stscore()
             else:
                 print("!잘못된 입력!")
+def List01_find():
+    while True:
+        print("_"*50)
+        print("1:학생 성적 현황(학생 성적 통지서) 2.과목별 성적 현황 3.복귀")
+        selno = input("<작업 선택> ")
+        if len(selno) == 0 or selno == '0':
+            return
+        if len(selno) >= 0 and type(int(selno)) is int:
+            selno = int(selno)
+            if selno == 1:
+                all_List();
+            elif selno == 2:
+                find_dept()
+            elif selno == 3:
+                find_dept()
+            else:
+                print("!잘못된 입력!")
 
+###########################################################2###################################################################
+def find_student():
+    instid = input(">학번 입력: ")
+    val = get_student(instid)
+    sname, deptid = val #리스트 언팩킹
+    dname = get_dept(deptid)
+    print("학번: %s    성명: %s   소속학과: %s(%s)" %(instid, sname, dname, deptid))
 
-def sel_task(): #작업 선택 메뉴
-    print("_"*50)
-    print("1:검색   2:현황   3:통계   4:데이터관리   x:종료")
-    selno = input("<작업 선택> ")
-    if len(selno) == 0:
-        return 'x'
-    else:
-        return selno
 def find_dept():
     indeptid=input(">학과 번호 입력:")
     dname=get_dept(indeptid)
@@ -62,6 +86,14 @@ def find_stscore():
         if instscore == number:
             print("[번호 :%s] [과목 번호:%s] [점수:%s]"%(number,studynumber,score))
 
+###########################################################2###################################################################
+def all_List():
+    instid = input(">학번 입력: ")
+    val = get_student(instid)
+    sname, deptid = val
+    dname = get_dept(deptid)
+    print("[학번: %s]    [성명: %s]   [소속학과: %s(%s)]" %(instid, sname, dname, deptid))
+
 
 ########## Main ################
 while True:         #작업 선택
@@ -69,7 +101,7 @@ while True:         #작업 선택
     if selno == SEARCH:
         selmenu01_find()
     elif selno == LIST:
-        print(LIST)
+        List01_find()
     elif selno == STATS:
         print(STATS)
     elif selno == DATAMG:
