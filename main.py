@@ -3,7 +3,6 @@ from Score import *
 # 작업 선택 종류
 SEARCH, LIST, STATS, DATAMG, END = ('1', '2', '3', '4', 'x')
 
-
 def sel_task():  # 작업 선택 메뉴
     print("_" * 50)
     print("1:검색   2:현황   3:통계   4:데이터관리   x:종료")
@@ -55,7 +54,7 @@ def List01_find():
         if len(selno) >= 0 and type(int(selno)) is int:
             selno = int(selno)
             if selno == 1:
-                all_List();
+                all_List()
             elif selno == 2:
                 find_dept()
             elif selno == 3:
@@ -107,7 +106,65 @@ def all_List():
     sname, deptid = val
     dname = get_dept(deptid)
     print("[학번: %s]    [성명: %s]   [소속학과: %s(%s)]" % (instid, sname, dname, deptid))
-    print("[과목명:%s] [과목코드:%s] [학점:%s] [점수:%s] [등급:%s]")
+    count=0
+    counttime=0
+    Average=0
+    sumscore=0
+    for number, studynumber, score in stscore:
+        subject = get_subject(studynumber)
+        study, time, fulltime, FirstName = subject
+        ascore=int(score)
+        if ascore <= 100 and ascore>= 95:
+            rank = "A+"
+        elif ascore < 95 and ascore >= 90:
+            rank = "A"
+        elif ascore < 90 and ascore >= 85:
+            rank = "B+"
+        elif ascore < 85 and ascore >=80:
+            rank = "B"
+        elif ascore < 80 and ascore >=75:
+            rank = "C+"
+        elif ascore < 75 and ascore >=70:
+            rank = "C"
+        elif ascore < 70 and ascore >=65:
+            rank = "D+"
+        elif ascore < 65 and ascore >=60:
+            rank = "D"
+        else:
+            rank = "F"
+        if number == instid:
+            print("[과목명:%s] [과목코드 : %s] [학점:%s] [점수:%s] [등급:%s]" % (study, studynumber, time, score,rank))
+            count+=1
+            times=int(time)##학점을 더해주기 위해 형 변환
+            counttime=counttime+times##총 학점 수
+            sumscore=sumscore+int(score)##평균을 구하기 위해 형 변환
+            Average=sumscore/count##평균 값
+
+            sumcredit = 0  ##평점 출력
+            credit = 0
+            if rank == "A+":
+                credit += 4.5
+            elif rank == "A":
+                credit += 4.3
+            elif rank == "B+":
+                credit += 3.5
+            elif rank == "B":
+                credit += 3.3
+            elif rank == "C+":
+                credit += 2.5
+            elif rank == "C":
+                credit += 2.3
+            elif rank == "D+":
+                credit += 1.5
+            elif rank == "D":
+                credit += 1.3
+            else:
+                credit = 0
+        print(float(credit))
+        sumcredit += float(credit)
+    print("[과목 수:%d] [학점 수:%d] [평균 점수: %d] [평점%.1f]"%(count,counttime,Average,float(sumcredit/3)))
+
+
 
 
 ########## Main ################
