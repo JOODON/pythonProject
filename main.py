@@ -107,7 +107,7 @@ def find_subject():
     insubject = input(">검색할 과목을 입력:")
     subject = get_subject(insubject)
     study, time, fulltime, FirstName = subject
-    print("[과목명:%s] [학점 : %s] [이수 시간:%s] [ProF:%s]" % (study, time, fulltime, FirstName))
+    print("[과목명:%s] [학점 : %s] [개설 학과:%s] [ProF:%s]" % (study, time, fulltime, FirstName))
 
 
 def find_stscore():
@@ -261,8 +261,9 @@ def stats_find():
     print("[학과명 :%s (%s)]" % (dname, indeptid))
     for number, studynumber, score in stscore:
         subject = get_subject(studynumber)
+        subject = get_subject(studynumber)
         study, time, fulltime, FirstName = subject
-        print("[과목명:%s] [학점 : %s] [이수 시간:%s] [ProF:%s]" % (study, time, fulltime, FirstName))
+        print("[과목명:%s] [학점 : %s] [개설 학과:%s] [ProF:%s]" % (study, time, fulltime, FirstName))
 
 
 ########## Main ################
