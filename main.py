@@ -56,7 +56,7 @@ def List01_find():
             if selno == 1:
                 all_List()
             elif selno == 2:
-                find_dept()
+                List_subject1()
             elif selno == 3:
                 find_dept()
             else:
@@ -160,11 +160,17 @@ def all_List():
                 credit += 1.3
             else:
                 credit = 0
-        print(float(credit))
-        sumcredit += float(credit)
-    print("[과목 수:%d] [학점 수:%d] [평균 점수: %d] [평점%.1f]"%(count,counttime,Average,float(sumcredit/3)))
+    print("[과목 수:%d] [학점 수:%d] [평균 점수: %d] [평점%.1f]"%(count,counttime,Average,float(credit)))
 
+def List_subject1():
+    insubject = input(">검색할 과목코드를 입력해주세요:")
+    subject = get_subject(insubject)
+    study, time, fulltime, FirstName = subject
+    dname = get_prof(FirstName)
+    name, age = dname
+    dname = get_dept(fulltime)
 
+    print("[과목명:%s] [과목코드: %s][학점 : %s] [개설 학과:%s] [교수님 이름:%s]" % (study,insubject,time,dname,name))
 
 
 ########## Main ################
