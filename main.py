@@ -304,20 +304,25 @@ def stats_find2():
     dname = get_dept(indeptid)
     print("[학과명 :%s (%s)]" % (dname, indeptid))
     sumtime=0
+    arr=[]
+    sumstudant=0
     count=0
     for id,val in prof.items():
         name,age=val
         for scode, val in subject.items():
             studyname, time, studycode, Nikname = val
-            if id in Nikname:
-                for stdynumber,subjec,score in stscore:
-                    if scode in subjec:
-                        count=count+1
-                print("[교수아이디:%s][교수명:%s][과목명:%s][학점:%s][수강생수:%s]" % (Nikname, name, studyname, time,count))
-                atime = int(time)
-                sumtime = sumtime + atime
-                count = 0
-    print("[과목 수:%d] [학점 수:%d] [수강생 합계:%d]"%(len(subject),sumtime,len(stscore)))
+            if indeptid in studycode:
+                if id in Nikname:
+                    for stdynumber,subjec,score in stscore:
+                        if scode in subjec:
+                            count=count+1
+                    print("[교수아이디:%s][교수명:%s][과목명:%s][학점:%s][수강생수:%s]" % (Nikname, name, studyname, time,count))
+                    atime = int(time)
+                    sumtime = sumtime + atime
+                    sumstudant=sumstudant+count
+                    arr.append(studyname)
+                    count = 0
+    print("[과목 수:%d] [학점 수:%d] [수강생 합계:%d]"%(len(arr),sumtime,sumstudant))
 
 ########## Main ################
 while True:  # 작업 선택
