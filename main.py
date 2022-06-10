@@ -93,7 +93,7 @@ def selmenu04_up():
         if len(selno) >= 0 and type(int(selno)) is int:
             selno = int(selno)
             if selno == 1:
-                stats_find()
+                Search_find()
             elif selno == 2:
                 stats_find2()
             elif selno == 3:
@@ -323,7 +323,28 @@ def stats_find2():
                     arr.append(studyname)
                     count = 0
     print("[과목 수:%d] [학점 수:%d] [수강생 합계:%d]"%(len(arr),sumtime,sumstudant))
-
+#################################################################4#######################################
+def Search_find():
+    search=input("검색하실 데이터를 입력해주세요."
+                 "[학과: dept],[교수:prof],[과목:subject],[학생:student],[성적:stscore] ex)student>>>>>").lower()
+    if search=="dept" :
+        for key,val in dept.items():
+            print("[학과번호:%s][학과:%s]"%(key,val))
+    elif search=="prof" :
+        for key,val in prof.items():
+            name,age=val
+            print("[교수 닉네임:%s] [교수 이름:%s][교수 나이:%0s]"%(key,name,age))
+    elif search == "subject":
+        for key,val in subject.items():
+            studyname,time,depta,nikname=val
+            print("[과목 번호:%s] [과목 이름:%s][학점:%s][학과 번호:%s][교수 닉네임:%s]"%(key,studyname,time,depta,nikname))
+    elif search =="student":
+        for key,val in student.items():
+            name,depta=val
+            print("[학번:%s] [학생 이름:%s][학과번호:%s]"%(key,name,depta))
+    elif search == "stscore":
+        for number,studynumber,score in stscore:
+            print("[학번:%s] [과목 번호:%s][점수:%s]"%(number,studynumber,score))
 ########## Main ################
 while True:  # 작업 선택
     selno = sel_task()  # 작업 번호 선택
