@@ -83,8 +83,25 @@ def STATS01_find():
                 sel_task()
             else:
                 print("!잘못된 입력!")
-
-
+def selmenu04_up():
+    while True:
+        print("_" * 50)
+        print("1:검색 2.수정 3.추가 4.삭제")
+        selno = input("<작업 선택> ")
+        if len(selno) == 0 or selno == '0':
+            return
+        if len(selno) >= 0 and type(int(selno)) is int:
+            selno = int(selno)
+            if selno == 1:
+                stats_find()
+            elif selno == 2:
+                stats_find2()
+            elif selno == 3:
+                sel_task()
+            elif selno == 4:
+                sel_task()
+            else:
+                print("!잘못된 입력!")
 ###########################################################2###################################################################
 def find_student():
     instid = input(">학번 입력: ")
