@@ -95,7 +95,7 @@ def selmenu04_up():
             if selno == 1:
                 Search_find()
             elif selno == 2:
-                stats_find2()
+                crystal_find()
             elif selno == 3:
                 sel_task()
             elif selno == 4:
@@ -345,6 +345,26 @@ def Search_find():
     elif search == "stscore":
         for number,studynumber,score in stscore:
             print("[학번:%s] [과목 번호:%s][점수:%s]"%(number,studynumber,score))
+    else:
+        print("등록 되어 있지 않은 데이터 입니다")
+def crystal_find():
+    crystal=input("수정할 데이터를 입력해 주세요[학과: dept],[교수:prof],[과목:subject],[학생:student],[성적:stscore] ex)student>>>>>.")
+    if crystal=="dept":
+        insert=input("수정하실 학과 학과번호를 입력해주세요.>>>>")
+        remove=input("수정 하여 등록하실 이름을 등록해주세요.>>>>")
+        dept[insert]=remove
+        print(dept)
+    elif crystal=="prof":
+        insert = input("수정하실 교수님 닉네임을 입력해주세요.>>>>")
+        rename = input("수정 하여 등록하실 이름를 등록해주세요 .>>>>")
+        reage = input("수정 하여 등록하실 이름를 등록해주세요 .>>>>")
+        for key,val in prof.items():
+            name,age=val
+            if key==insert:
+                name=rename
+                age=reage
+                print(prof)
+
 ########## Main ################
 while True:  # 작업 선택
     selno = sel_task()  # 작업 번호 선택
