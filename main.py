@@ -379,7 +379,7 @@ def crystal_find():
         stscore[index][2]=rescore
         print(stscore)
 def Additional_find():
-    search = input("검색하실 데이터를 입력해주세요.[학과: dept],[교수:prof],[과목:subject],[학생:student],[성적:stscore] ex)student>>>>>").lower()
+    search = input("추가하실 데이터를 입력해주세요.[학과: dept],[교수:prof],[과목:subject],[학생:student],[성적:stscore] ex)student>>>>>").lower()
     if search=="dept" :
         insert=input("추가하실 학과번호 학과이름을 입력해주세요").split()
         dept[insert[0]]=insert[1]
@@ -400,7 +400,7 @@ def Additional_find():
         insert = input("추가하실 [학번][학과번호][점수]를 입력해주세요").split()
         stscore.append([insert[0],insert[1],insert[2]])
 def del_find():
-    search = input("검색하실 데이터를 입력해주세요.[학과: dept],[교수:prof],[과목:subject],[학생:student],[성적:stscore] ex)student>>>>>").lower()
+    search = input("삭제하실 데이터를 입력해주세요.[학과: dept],[교수:prof],[과목:subject],[학생:student],[성적:stscore] ex)student>>>>>").lower()
     if search == "dept":
         insert = input("삭제 하실 [학과번호]를 입력해주세요 ")
         del dept[insert]
@@ -419,7 +419,7 @@ def del_find():
         print(student)
     elif search == "stscore":
         numberarr = []
-        insert=input("수정하실 [학번] [과목번호]을 입력해주세요>>>>").split()
+        insert=input("삭제하실 [학번] [과목번호]을 입력해주세요>>>>").split()
         for number,studynumber,score in stscore:
             numberarr.append([number,studynumber])
         index=numberarr.index(insert)

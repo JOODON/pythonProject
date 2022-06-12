@@ -64,31 +64,3 @@ def get_subject(subid):
         return val
     else:
         return []
-def Lank(ascore):
-    if ascore <= 100 and ascore >= 95:
-        rank = "A+"
-        return rank
-    elif ascore < 95 and ascore >= 90:
-        rank = "A"
-        return rank
-    elif ascore < 90 and ascore >= 85:
-        rank = "B+"
-        return rank
-    elif ascore < 85 and ascore >= 80:
-        rank = "B"
-        return rank
-    elif ascore < 80 and ascore >= 75:
-        rank = "C+"
-        return rank
-    elif ascore < 75 and ascore >= 70:
-        rank = "C"
-        return rank
-    elif ascore < 70 and ascore >= 65:
-        rank = "D+"
-        return rank
-    elif ascore < 65 and ascore >= 60:
-        rank = "D"
-        return rank
-    else:
-        rank = "F"
-        return rank
