@@ -356,14 +356,9 @@ def crystal_find():
         print(dept)
     elif crystal=="prof":
         insert = input("수정하실 교수님 닉네임을 입력해주세요.>>>>")
-        rename = input("수정 하여 등록하실 이름를 등록해주세요 .>>>>")
-        reage = input("수정 하여 등록하실 이름를 등록해주세요 .>>>>")
-        for key,val in prof.items():
-            name,age=val
-            if key==insert:
-                name=rename
-                age=reage
-                print(prof)
+        reval = input("수정 하여 등록하실 이름 나이를 등록해주세요 .>>>>").split()
+        prof[insert]=reval
+        print(prof)
 
 ########## Main ################
 while True:  # 작업 선택
