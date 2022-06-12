@@ -350,15 +350,34 @@ def Search_find():
 def crystal_find():
     crystal=input("수정할 데이터를 입력해 주세요[학과: dept],[교수:prof],[과목:subject],[학생:student],[성적:stscore] ex)student>>>>>.")
     if crystal=="dept":
-        insert=input("수정하실 학과 학과번호를 입력해주세요.>>>>")
+        insert=input("수정하실 학과 [학과번호]를 입력해주세요.>>>>")
         remove=input("수정 하여 등록하실 이름을 등록해주세요.>>>>")
         dept[insert]=remove
         print(dept)
     elif crystal=="prof":
         insert = input("수정하실 교수님 닉네임을 입력해주세요.>>>>")
-        reval = input("수정 하여 등록하실 이름 나이를 등록해주세요 .>>>>").split()
+        reval = input("수정 하여 등록하실 [이름] [나이]를 등록해주세요 .>>>>").split()
         prof[insert]=reval
         print(prof)
+    elif crystal == "subject":
+        insert = input("수정하실 과목 번호를 입력해주세요.>>>>")
+        reval = input("수정하여 등록하실 [과목명] [학점] [학과번호] [교수닉네임] 을 입력해주세요.>>>>").split()
+        subject[insert] = reval
+        print(subject)
+    elif crystal == "student":
+        insert = input("수정하실 학번를 입력해주세요.>>>>")
+        reval = input("수정하여 등록하실 [학생 명] [학과번호]을 입력해주세요.>>>>").split()
+        student[insert] = reval
+        print(student)
+    elif crystal == "stscore":
+        numberarr = []
+        insert=input("수정하실 [학번] [과목번호]을 입력해주세요>>>>").split()
+        rescore=input("수정하여 등록하실 [점수]를 입력해주세요>>>>>>>")
+        for number,studynumber,score in stscore:
+            numberarr.append([number,studynumber])
+        index=numberarr.index(insert)
+        stscore[index][2]=rescore
+        print(stscore)
 
 ########## Main ################
 while True:  # 작업 선택
