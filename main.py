@@ -97,9 +97,9 @@ def selmenu04_up():
             elif selno == 2:
                 crystal_find()
             elif selno == 3:
-                sel_task()
+                Additional_find()
             elif selno == 4:
-                sel_task()
+                del_find()
             else:
                 print("!잘못된 입력!")
 ###########################################################2###################################################################
@@ -378,7 +378,53 @@ def crystal_find():
         index=numberarr.index(insert)
         stscore[index][2]=rescore
         print(stscore)
-
+def Additional_find():
+    search = input("검색하실 데이터를 입력해주세요.[학과: dept],[교수:prof],[과목:subject],[학생:student],[성적:stscore] ex)student>>>>>").lower()
+    if search=="dept" :
+        insert=input("추가하실 학과번호 학과이름을 입력해주세요").split()
+        dept[insert[0]]=insert[1]
+        print(dept)
+    elif search=="prof" :
+        insert = input("추가하실 [교수닉네임] [이름][나이]를 입력해주세요").split()
+        prof[insert[0]] = [insert[1],insert[2]]
+        print(prof)
+    elif search == "subject":
+        insert = input("추가하실 [과목번호][과목이름][학점][학과번호][교수닉네임]을 입력해주세요").split()
+        subject[insert[0]] = [insert[1], insert[2],insert[3],insert[4]]
+        print(subject)
+    elif search =="student":
+        insert = input("추가하실 [학번][학생 이름][학과번호]를 입력해주세요").split()
+        student[insert[0]] = [insert[1], insert[2]]
+        print(student)
+    elif search == "stscore":
+        insert = input("추가하실 [학번][학과번호][점수]를 입력해주세요").split()
+        stscore.append([insert[0],insert[1],insert[2]])
+def del_find():
+    search = input("검색하실 데이터를 입력해주세요.[학과: dept],[교수:prof],[과목:subject],[학생:student],[성적:stscore] ex)student>>>>>").lower()
+    if search == "dept":
+        insert = input("삭제 하실 [학과번호]를 입력해주세요 ")
+        del dept[insert]
+        print(dept)
+    elif search == "prof":
+        insert = input("삭제 하실 [교수 닉네임]을 입력해주세요 ")
+        del prof[insert]
+        print(prof)
+    elif search == "subject":
+        insert = input("삭제 하실 [과목번호]을 입력해주세요")
+        del subject[insert]
+        print(subject)
+    elif search == "student":
+        insert = input("삭제 하실 [학번]을 입력해주세요")
+        del student[insert]
+        print(student)
+    elif search == "stscore":
+        numberarr = []
+        insert=input("수정하실 [학번] [과목번호]을 입력해주세요>>>>").split()
+        for number,studynumber,score in stscore:
+            numberarr.append([number,studynumber])
+        index=numberarr.index(insert)
+        del stscore[index]
+        print(stscore)
 ########## Main ################
 while True:  # 작업 선택
     selno = sel_task()  # 작업 번호 선택
