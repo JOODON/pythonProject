@@ -94,12 +94,16 @@ def selmenu04_up():
             selno = int(selno)
             if selno == 1:
                 Stscore_find()
+                save_score()
             elif selno == 2:
                 student_find()
+                student_Save()
             elif selno == 3:
                 prof_find()
+                save_prof()
             elif selno == 4:
                 subject_find()
+                subject_Save()
             elif selno == 5:
                 Lesson_find()
             else:
@@ -418,9 +422,34 @@ def subject_find():
     else:
         print("등록 되어 있지 않은 데이터 입니다")
 def Lesson_find():
-    for key,val in Lesson.items():
-        print("[과목 번호:%s]\n[수강생 정보:%s]"%(key,val))
-
+    redata = input("1.검색 2.수정 3.추가 4.삭제")
+    if redata == "1":
+        for key,val in subject.items():
+            print([key,val])
+            print("[학번]     [과목번호]     [점수]")
+            for number,studynumber,score in stscore:
+                if key==studynumber:
+                    print("%s     %s        %s"%(number, studynumber,score))
+    elif redata == "2":
+        arr=[]
+        insert=input("수강 수정을 원하시는 학번 과목 번호을 입력해주세요").split()
+        Modify=input("수강이 수정될 값의 과목 번호를 입력해주세요")
+        for number, studynumber, score in stscore:
+            arr.append([number,studynumber])
+            index=arr.index(insert)
+            stscore[index][1]=Modify
+    elif redata == "3":
+        insert = input("추가하실 [학번][학과번호][점수]를 입력해주세요").split()
+        stscore.append([insert[0], insert[1], insert[2]])
+        print(stscore)
+    elif redata == "4":
+        numberarr = []
+        insert = input("삭제하실 [학번] [과목번호]을 입력해주세요>>>>").split()
+        for number, studynumber, score in stscore:
+            numberarr.append([number, studynumber])
+        index = numberarr.index(insert)
+        del stscore[index]
+        print(stscore)
 ########## Main ################
 while True:  # 작업 선택
     selno = sel_task()  # 작업 번호 선택
