@@ -100,6 +100,8 @@ def selmenu04_up():
                 prof_find()
             elif selno == 4:
                 subject_find()
+            elif selno == 5:
+                Lesson_find()
             else:
                 print("!잘못된 입력!")
 ###########################################################2###################################################################
@@ -415,6 +417,9 @@ def subject_find():
         print(subject)
     else:
         print("등록 되어 있지 않은 데이터 입니다")
+def Lesson_find():
+    for key,val in Lesson.items():
+        print("[과목 번호:%s]\n[수강생 정보:%s]"%(key,val))
 
 ########## Main ################
 while True:  # 작업 선택
