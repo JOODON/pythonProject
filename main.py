@@ -86,20 +86,20 @@ def STATS01_find():
 def selmenu04_up():
     while True:
         print("_" * 50)
-        print("1:검색 2.수정 3.추가 4.삭제")
+        print("1:성적 2.학생 3.교수 4.과목 5.수강 0.복귀")
         selno = input("<작업 선택> ")
         if len(selno) == 0 or selno == '0':
             return
         if len(selno) >= 0 and type(int(selno)) is int:
             selno = int(selno)
             if selno == 1:
-                Search_find()
+                Stscore_find()
             elif selno == 2:
-                crystal_find()
+                student_find()
             elif selno == 3:
-                Additional_find()
+                prof_find()
             elif selno == 4:
-                del_find()
+                subject_find()
             else:
                 print("!잘못된 입력!")
 ###########################################################2###################################################################
@@ -324,52 +324,12 @@ def stats_find2():
                     count = 0
     print("[과목 수:%d] [학점 수:%d] [수강생 합계:%d]"%(len(arr),sumtime,sumstudant))
 ################################################################################4########################################################################
-def Search_find():
-    search=input("검색하실 데이터를 입력해주세요."
-                 "[학과: dept],[교수:prof],[과목:subject],[학생:student],[성적:stscore] ex)student>>>>>").lower()
-    if search=="dept" :
-        for key,val in dept.items():
-            print("[학과번호:%s][학과:%s]"%(key,val))
-    elif search=="prof" :
-        for key,val in prof.items():
-            name,age=val
-            print("[교수 닉네임:%s] [교수 이름:%s][교수 나이:%0s]"%(key,name,age))
-    elif search == "subject":
-        for key,val in subject.items():
-            studyname,time,depta,nikname=val
-            print("[과목 번호:%s] [과목 이름:%s][학점:%s][학과 번호:%s][교수 닉네임:%s]"%(key,studyname,time,depta,nikname))
-    elif search =="student":
-        for key,val in student.items():
-            name,depta=val
-            print("[학번:%s] [학생 이름:%s][학과번호:%s]"%(key,name,depta))
-    elif search == "stscore":
+def Stscore_find():
+    redata=input("1.검색 2.수정 3.추가 4.삭제")
+    if redata == "1":
         for number,studynumber,score in stscore:
             print("[학번:%s] [과목 번호:%s][점수:%s]"%(number,studynumber,score))
-    else:
-        print("등록 되어 있지 않은 데이터 입니다")
-def crystal_find():
-    crystal=input("수정할 데이터를 입력해 주세요[학과: dept],[교수:prof],[과목:subject],[학생:student],[성적:stscore] ex)student>>>>>.")
-    if crystal=="dept":
-        insert=input("수정하실 학과 [학과번호]를 입력해주세요.>>>>")
-        remove=input("수정 하여 등록하실 이름을 등록해주세요.>>>>")
-        dept[insert]=remove
-        print(dept)
-    elif crystal=="prof":
-        insert = input("수정하실 교수님 닉네임을 입력해주세요.>>>>")
-        reval = input("수정 하여 등록하실 [이름] [나이]를 등록해주세요 .>>>>").split()
-        prof[insert]=reval
-        print(prof)
-    elif crystal == "subject":
-        insert = input("수정하실 과목 번호를 입력해주세요.>>>>")
-        reval = input("수정하여 등록하실 [과목명] [학점] [학과번호] [교수닉네임] 을 입력해주세요.>>>>").split()
-        subject[insert] = reval
-        print(subject)
-    elif crystal == "student":
-        insert = input("수정하실 학번를 입력해주세요.>>>>")
-        reval = input("수정하여 등록하실 [학생 명] [학과번호]을 입력해주세요.>>>>").split()
-        student[insert] = reval
-        print(student)
-    elif crystal == "stscore":
+    elif redata == "2":
         numberarr = []
         insert=input("수정하실 [학번] [과목번호]을 입력해주세요>>>>").split()
         rescore=input("수정하여 등록하실 [점수]를 입력해주세요>>>>>>>")
@@ -378,46 +338,11 @@ def crystal_find():
         index=numberarr.index(insert)
         stscore[index][2]=rescore
         print(stscore)
-def Additional_find():
-    search = input("추가하실 데이터를 입력해주세요.[학과: dept],[교수:prof],[과목:subject],[학생:student],[성적:stscore] ex)student>>>>>").lower()
-    if search=="dept" :
-        insert=input("추가하실 학과번호 학과이름을 입력해주세요").split()
-        dept[insert[0]]=insert[1]
-        print(dept)
-    elif search=="prof" :
-        insert = input("추가하실 [교수닉네임] [이름][나이]를 입력해주세요").split()
-        prof[insert[0]] = [insert[1],insert[2]]
-        print(prof)
-    elif search == "subject":
-        insert = input("추가하실 [과목번호][과목이름][학점][학과번호][교수닉네임]을 입력해주세요").split()
-        subject[insert[0]] = [insert[1], insert[2],insert[3],insert[4]]
-        print(subject)
-    elif search =="student":
-        insert = input("추가하실 [학번][학생 이름][학과번호]를 입력해주세요").split()
-        student[insert[0]] = [insert[1], insert[2]]
-        print(student)
-    elif search == "stscore":
+    elif redata == "3":
         insert = input("추가하실 [학번][학과번호][점수]를 입력해주세요").split()
         stscore.append([insert[0],insert[1],insert[2]])
-def del_find():
-    search = input("삭제하실 데이터를 입력해주세요.[학과: dept],[교수:prof],[과목:subject],[학생:student],[성적:stscore] ex)student>>>>>").lower()
-    if search == "dept":
-        insert = input("삭제 하실 [학과번호]를 입력해주세요 ")
-        del dept[insert]
-        print(dept)
-    elif search == "prof":
-        insert = input("삭제 하실 [교수 닉네임]을 입력해주세요 ")
-        del prof[insert]
-        print(prof)
-    elif search == "subject":
-        insert = input("삭제 하실 [과목번호]을 입력해주세요")
-        del subject[insert]
-        print(subject)
-    elif search == "student":
-        insert = input("삭제 하실 [학번]을 입력해주세요")
-        del student[insert]
-        print(student)
-    elif search == "stscore":
+        print(stscore)
+    elif redata == "4":
         numberarr = []
         insert=input("삭제하실 [학번] [과목번호]을 입력해주세요>>>>").split()
         for number,studynumber,score in stscore:
@@ -425,6 +350,72 @@ def del_find():
         index=numberarr.index(insert)
         del stscore[index]
         print(stscore)
+    else:
+        print("등록 되어 있지 않은 데이터 입니다")
+def student_find():
+    redata=input("1.검색 2.수정 3.추가 4.삭제")
+    if redata == "1":
+        for key, val in student.items():
+            name, depta = val
+            print("[학번:%s] [학생 이름:%s][학과번호:%s]" % (key, name, depta))
+    elif redata == "2":
+        insert = input("수정하실 학번를 입력해주세요.>>>>")
+        reval = input("수정하여 등록하실 [학생 명] [학과번호]을 입력해주세요.>>>>").split()
+        student[insert] = reval
+        print(student)
+    elif redata == "3":
+        insert = input("추가하실 [학번][학생 이름][학과번호]를 입력해주세요").split()
+        student[insert[0]] = [insert[1], insert[2]]
+        print(student)
+    elif redata == "4":
+        insert = input("삭제 하실 [학번]을 입력해주세요")
+        del student[insert]
+        print(student)
+    else:
+        print("등록 되어 있지 않은 데이터 입니다")
+def prof_find():
+    redata=input("1.검색 2.수정 3.추가 4.삭제")
+    if redata == "1":
+        for key, val in prof.items():
+            name, age = val
+            print("[교수 닉네임:%s] [교수 이름:%s][교수 나이:%0s]" % (key, name, age))
+    elif redata == "2":
+        insert = input("수정하실 교수님 닉네임을 입력해주세요.>>>>")
+        reval = input("수정 하여 등록하실 [이름] [나이]를 등록해주세요 .>>>>").split()
+        prof[insert] = reval
+        print(prof)
+    elif redata == "3":
+        insert = input("추가하실 [교수닉네임] [이름][나이]를 입력해주세요").split()
+        prof[insert[0]] = [insert[1], insert[2]]
+        print(prof)
+    elif redata == "4":
+        insert = input("삭제 하실 [교수 닉네임]을 입력해주세요 ")
+        del prof[insert]
+        print(prof)
+    else:
+        print("등록 되어 있지 않은 데이터 입니다")
+def subject_find():
+    redata=input("1.검색 2.수정 3.추가 4.삭제")
+    if redata == "1":
+        for key,val in subject.items():
+            studyname,time,depta,nikname=val
+            print("[과목 번호:%s] [과목 이름:%s][학점:%s][학과 번호:%s][교수 닉네임:%s]"%(key,studyname,time,depta,nikname))
+    elif redata == "2":
+        insert = input("수정하실 과목 번호를 입력해주세요.>>>>")
+        reval = input("수정하여 등록하실 [과목명] [학점] [학과번호] [교수닉네임] 을 입력해주세요.>>>>").split()
+        subject[insert] = reval
+        print(subject)
+    elif redata == "3":
+        insert = input("추가하실 [과목번호][과목이름][학점][학과번호][교수닉네임]을 입력해주세요").split()
+        subject[insert[0]] = [insert[1], insert[2],insert[3],insert[4]]
+        print(subject)
+    elif redata == "4":
+        insert = input("삭제 하실 [과목번호]을 입력해주세요")
+        del subject[insert]
+        print(subject)
+    else:
+        print("등록 되어 있지 않은 데이터 입니다")
+
 ########## Main ################
 while True:  # 작업 선택
     selno = sel_task()  # 작업 번호 선택
