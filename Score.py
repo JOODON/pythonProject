@@ -31,6 +31,20 @@ def subject_Save():
             studyname,time,studynum,nik=val
             rec = key + '\t' + studyname + '\t' + time+ '\t' + studynum + '\t' + nik + '\n'
             f.write(rec)
+def Lesson_Save():
+    fpath = os.getcwd()
+    fname = fpath + '\\' + "Lesson.txt"
+    with open(fname, 'w', encoding='UTF-8') as f:
+        for key, val in subject.items():
+            studyname, time, studynum, nik = val
+            rec=key + '\t' + studyname + '\t' + time+ '\t' + studynum + '\t' + nik + '\n'
+            f.write(rec)
+            for number, studynumber, score in stscore:
+                if key == studynumber:
+                    rec1=key + '\t' + number + '\t' +studynumber+ '\t' + score + '\n'
+                    f.write(rec1)
+
+
 
 #학과 딕셔너리
 dept = {'10': '행정과', '11': '복지학과', '20': '스포츠학과', '21': '간호학과', '30': '컴소과', '31': '전자공학과', '32': '건축과'}
