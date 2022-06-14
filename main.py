@@ -305,7 +305,6 @@ def stats_find():
                         count+=1
                 print("[과목명:%s] [과목코드:%s] [학점:%s] [수강생 수:%d] [평균 점수:%d] [최고점수:%d] [최저점수:%d]" %(studyname,studynumber,time,count,Avarge/count,max(arr),min(arr)))
 
-
 def stats_find2():
     indeptid = input(">학과 번호 입력:")
     dname = get_dept(indeptid)
