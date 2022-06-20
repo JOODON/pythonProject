@@ -450,6 +450,7 @@ def Lesson_find():
         index = numberarr.index(insert)
         del stscore[index]
         print(stscore)
+
 ########## Main ################
 while True:  # 작업 선택
     selno = sel_task()  # 작업 번호 선택
